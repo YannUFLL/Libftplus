@@ -6,7 +6,7 @@
 #    By: ydumaine <ydumaine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/19 14:41:53 by ydumaine          #+#    #+#              #
-#    Updated: 2024/12/19 14:51:56 by ydumaine         ###   ########.fr        #
+#    Updated: 2024/12/19 15:35:04 by ydumaine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,10 @@ Ft_printf_DIR = Ft_printf
 
 
 all : $(Libft) $(Ft_printf)
-	ar -rcs $(NAME)  $(Libft) $(Ft_printf)
+	@ar -x $(Libft)              # Extraire les .o de libft.a
+	@ar -x $(Ft_printf)          # Extraire les .o de ft_printf.a
+	ar -rcs $(NAME) *.o          # Créer libftplus.a avec tous les .o
+	rm -f *.o                    # Nettoyer les fichiers objets temporaires
 
 
 $(Libft) : 
